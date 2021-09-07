@@ -11,7 +11,7 @@ class order{
         return cy.get('[data-test=login-button]')
                  .should('not.be.disabled')
     }
-    urlCheck(){
+    inventoryUrlCheck(){
         return cy.url()
                  .should('include', '/inventory.html')
     }
@@ -26,10 +26,8 @@ class order{
 //        )}
 //    }
 
-
-
     addToCart(){
-        return cy.get('[data-test=add-to-cart-sauce-labs-backpack]')
+        return cy.get('[data-test="add-to-cart-sauce-labs-backpack"]')
                  .click()
     }
     buttonChanged(){
@@ -44,8 +42,59 @@ class order{
     isProductAdded(){
         return cy.get('[class="inventory_item_name"]')
                  .should('be.visible')
-
     }
+    checkPrice(){
+        return cy.get('[class="inventory_item_price"]')
+                 .should('contain', '29.99')
+    }
+    checkoutClick(){
+        return cy.get('[data-test=checkout]')
+                 .click()
+    }
+    ifFillFormVisible(){
+            return cy.get('.checkout_info')
+                     .should('be.visible')
+        }
 
+    checkoutUrlCheck(){
+        return cy.url()
+                 .should('include', '/checkout-step-one')
+    }
+    firstNameFill(){
+        return cy.get('[data-test=firstName]')
+                 .click()
+                 .type('fist')
+    }
+    lastNameFill(){
+        return cy.get('[data-test=lastName]')
+                 .click()
+                 .type('last')
+    }
+    postalFill(){
+        return cy.get('[data-test=postalCode]')
+                 .click()
+                 .type('000')
+    }
+    continueButtonClick(){
+        return cy.get('[data-test=continue]')
+                 .click()
+    }
+    continueUrlCheck(){
+        return cy.url()
+                 .should('include', '/checkout-step-two')
+        }
+    clickFinish(){
+        cy.get('[data-test=finish]')
+          .click()
+    }
+    finishUrlCheck(){
+        return cy.url()
+                 .should('include', '/checkout-complete')
+    }
+    ifThankYouNoteIsVisible(){
+    return cy.get('.complete-header')
+             .should('be.visible')
+    }
 }
+
 export default order
