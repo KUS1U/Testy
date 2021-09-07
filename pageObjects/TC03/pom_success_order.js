@@ -10,7 +10,7 @@ class order{
             cy.getCookie('session-username')
               .should('have.property', 'value', 'standard_user')
         });
-}
+    }
 
     LoginField(){
         return cy.get('[data-test=username]').click()
@@ -65,10 +65,9 @@ class order{
                  .click()
     }
     ifFillFormVisible(){
-            return cy.get('.checkout_info')
-                     .should('be.visible')
+        return cy.get('.checkout_info')
+                 .should('be.visible')
     }
-
     checkoutUrlCheck(){
         return cy.url()
                  .should('include', '/checkout-step-one')
@@ -98,15 +97,15 @@ class order{
         }
     clickFinish(){
         return cy.get('[data-test=finish]')
-          .click()
+                 .click()
     }
     finishUrlCheck(){
         return cy.url()
                  .should('include', '/checkout-complete')
     }
     ifThankYouNoteIsVisible(){
-    return cy.get('.complete-header')
-             .should('be.visible')
+        return cy.get('.complete-header')
+                 .should('be.visible')
     }
 }
 
