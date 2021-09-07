@@ -19,23 +19,36 @@ describe('Order', function(){
         order.PassField().should('not.be.null')
         order.submit().click()
 //        order.sessionData()
-
-    })
-    it('Check url', function(){
-        order.urlCheck()
+        order.inventoryUrlCheck()
     })
 
     it('add to cart', function(){
-        order.addToCart()
+        order.addToCart();
+        order.buttonChanged();
+        order.shoppingCart();
+        order.isProductAdded();
+        order.checkPrice();
     })
-    it('button changed', function(){
-        order.buttonChanged()
+
+    it('checkout', function(){
+        order.checkoutClick();
+        order.checkoutUrlCheck();
+        order.ifFillFormVisible()
     })
-    it('shopping cart icon', function(){
-        order.shoppingCart()
+
+    it('Fill in form', function(){
+        order.firstNameFill();
+        order.lastNameFill();
+        order.postalFill();
+        order.continueButtonClick();
+        order.continueUrlCheck();
+
     })
-    it('is product added', function(){
-        order.isProductAdded()
+
+    it('Confirm order', function(){
+        order.clickFinish();
+        order.finishUrlCheck();
+        order.ifThankYouNoteIsVisible();
     })
 
 
