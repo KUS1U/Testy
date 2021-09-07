@@ -1,4 +1,17 @@
 class order{
+    openPage(){
+        cy.visit('https://www.saucedemo.com/')
+    }
+
+    restoreCookies(){
+        beforeEach(() => {
+            cy.clearCookies()
+            cy.setCookie('session-username', 'standard_user')
+            cy.getCookie('session-username')
+              .should('have.property', 'value', 'standard_user')
+        });
+}
+
     LoginField(){
         return cy.get('[data-test=username]').click()
                  .type('standard_user')
@@ -54,7 +67,7 @@ class order{
     ifFillFormVisible(){
             return cy.get('.checkout_info')
                      .should('be.visible')
-        }
+    }
 
     checkoutUrlCheck(){
         return cy.url()
@@ -84,7 +97,7 @@ class order{
                  .should('include', '/checkout-step-two')
         }
     clickFinish(){
-        cy.get('[data-test=finish]')
+        return cy.get('[data-test=finish]')
           .click()
     }
     finishUrlCheck(){
