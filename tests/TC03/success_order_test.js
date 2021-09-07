@@ -3,15 +3,10 @@ import Order from '../../pageObjects/TC03/pom_success_order'
 describe('Order', function(){
     const order = new Order()
 
-        beforeEach(() => {
-            cy.clearCookies()
-            cy.setCookie('session-username', 'standard_user')
-            cy.getCookie('session-username')
-              .should('have.property', 'value', 'standard_user')
-        });
+    order.restoreCookies();
 
     it('Open page', function(){
-        cy.visit('https://www.saucedemo.com/')
+        order.openPage();
     })
 
     it('Login', function(){
@@ -50,6 +45,5 @@ describe('Order', function(){
         order.finishUrlCheck();
         order.ifThankYouNoteIsVisible();
     })
-
 
 });
